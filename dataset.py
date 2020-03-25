@@ -5,7 +5,7 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 def get_batched_imdb_dataset_from_keras(buffer_size, batch_size, maxlen=500):
-    """Loads the imdb reviews dataset from ``tf.keras.datasets`` module
+    r"""Loads the imdb reviews dataset from ``tf.keras.datasets`` module
 
     Parameters
     ----------
@@ -46,7 +46,7 @@ def get_batched_imdb_dataset_from_keras(buffer_size, batch_size, maxlen=500):
 
 
 def get_batched_imdb_dataset_from_hub(buffer_size, batch_size):
-    """Loads the imdb reviews dataset from tensorflow hub
+    r"""Loads the imdb reviews dataset from tensorflow hub
 
     Parameters
     ----------
@@ -87,7 +87,7 @@ def get_batched_imdb_dataset_from_hub(buffer_size, batch_size):
 
 
 def get_batched_imdb_dataset_from_tfds(buffer_size, batch_size):
-    """Loads the imdb reviews sataset from tensorflow datasets.
+    r"""Loads the imdb reviews sataset from tensorflow datasets.
 
     Parameters
     ----------

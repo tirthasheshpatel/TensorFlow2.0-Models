@@ -2,7 +2,7 @@ import tensorflow as tf
 
 
 def train_step(train_data, model, optimizer, loss_func, metric):
-    """Train Step
+    r"""Train Step
 
     Parameters
     ----------
@@ -66,7 +66,7 @@ def train_step(train_data, model, optimizer, loss_func, metric):
 
 
 def test_step(test_data, model, loss_func, metric):
-    """Evaluating the performance on test set
+    r"""Evaluating the performance on test set
 
     Parameters
     ----------

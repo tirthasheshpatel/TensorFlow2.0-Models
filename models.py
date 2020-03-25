@@ -1,12 +1,18 @@
+"""Models for sentiment analysis
+
+This module is still a Work in Progress.
+
+"""
+
 import sys
 import tensorflow as tf
 import tensorflow_hub as hub
-from tf.keras import Model
+from tensorflow.keras import Model
 from tensorflow.keras.layers import Dense, Embedding, Bidirectional, LSTM
 
 
 class ANNForSentimentAnalysis(Model):
-    """ANN for Sentiment Analysis.
+    r"""ANN for Sentiment Analysis.
     Uses the pretrained embeddings from tensorflow hub. It can be any dimentional embeddings.
 
     Training Dataset must have a shape of : [BATCH, SAMPLES, 1]
@@ -45,7 +51,7 @@ class ANNForSentimentAnalysis(Model):
 
 
 class RNNForSentimentAnalysis(Model):
-    """RNN for Sentiment Analysis.
+    r"""RNN for Sentiment Analysis.
     Uses the pretrained embeddings from tensorflow hub. It can be any dimentional embeddings.
 
     Training Dataset must have a shape of : [BATCH, SAMPLES, 1]
