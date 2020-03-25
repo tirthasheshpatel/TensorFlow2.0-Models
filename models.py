@@ -20,7 +20,10 @@ class ANNForSentimentAnalysis(Model):
         Link to the pretrained embeddings.
     
     name: ``string``
-        Name of your model
+        Name of your model.
+    
+    **kwargs: keyword arguments
+        Keyword arguments for ``tf.keras.Model`` class.
     """
 
     def __init__(self, embedding = "https://tfhub.dev/google/nnlm-en-dim128/1", name="ANNForSentimentAnalysis", **kwargs):
