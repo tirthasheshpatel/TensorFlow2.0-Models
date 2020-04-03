@@ -56,6 +56,20 @@ def sentiment():
     return None
 
 
+def open_file(): 
+    file = askopenfile(mode ='r', filetypes =[('Text file', '*.txt')]) 
+    if file is not None: 
+        global review, canvas
+        review = file.read() 
+        
+        
+        display_prediction = tk.Label(root, text='Result is: ', font=('helvetica', 14))
+        canvas.create_window(300, 270, window=display_prediction)
+
+        prediction = tk.Label(root, text=predict(review),font=('helvetica', 14, 'bold'))
+        canvas.create_window(300, 300, window=prediction) 
+
+
 root = tk.Tk()
 
 canvas = tk.Canvas(root, width = 600, height = 400,  relief = 'raised')
@@ -78,6 +92,10 @@ canvas.create_window(300, 180, window=entry)
 
 button1 = tk.Button(text='Predict Sentiment', command=sentiment, bg='brown', fg='white', font=('helvetica', 9, 'bold'))
 canvas.create_window(300, 230, window=button1)
+
+# browse_button : to take input from text file
+browse_button = Button(root, text ='Open File', command = lambda:open_file()) 
+canvas.create_window(300, 210, window=browse_button) 
 
 label2 = tk.Label(root, text='by Tirth Patel (18bce243) , Tirth Hihoriya (18bce244)')
 label2.config(font=('helvetica', 14))
