@@ -93,7 +93,7 @@ entry = tk.Entry(root,width=70)
 canvas.create_window(300, 180, window=entry)
 
 button1 = tk.Button(text='Predict Sentiment', command=sentiment, bg='brown', fg='white', font=('helvetica', 9, 'bold'))
-canvas.create_window(300, 230, window=button1)
+canvas.create_window(300, 260, window=button1)
 
 # browse_button : to take input from text file
 browse_button = Button(root, text ='Open File', command = lambda:open_file()) 
