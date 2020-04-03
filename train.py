@@ -57,7 +57,7 @@ def train_step(train_data, model, optimizer, loss_func, metric):
     print("")
 
     # Find mean loss and metric accross the batches and log the values
-    loss_val   = tf.reduce_mean(tf.convert_to_tensor(loss_history))
+    loss_val = tf.reduce_mean(tf.convert_to_tensor(loss_history))
     metric_val = tf.reduce_mean(tf.convert_to_tensor(metric_history))
     print(f"Mean Loss: {loss_val:.4f}\tMean Metric: {metric_val}")
 
@@ -88,7 +88,7 @@ def test_step(test_data, model, loss_func, metric):
     Mean Loss over all the batches
     Mean accuracy over all the batches
     """
-    loss_over_batches     = []
+    loss_over_batches = []
     accuracy_over_batches = []
 
     for batch in test_data:
@@ -98,7 +98,7 @@ def test_step(test_data, model, loss_func, metric):
         loss_over_batches.append(loss)
         accuracy = metric(y_test, preds)
 
-    loss_over_batches     = tf.convert_to_tensor(loss_over_batches)
+    loss_over_batches = tf.convert_to_tensor(loss_over_batches)
     accuracy_over_batches = tf.convert_to_tensor(accuracy_over_batches)
-    
+
     return tf.reduce_mean(loss_over_batches), tf.reduce_mean(accuracy_over_batches)

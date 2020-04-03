@@ -32,20 +32,27 @@ class ANNForSentimentAnalysis(Model):
         Keyword arguments for ``tf.keras.Model`` class.
     """
 
-    def __init__(self, embedding = "https://tfhub.dev/google/nnlm-en-dim128/1", name="ANNForSentimentAnalysis", **kwargs):
+    def __init__(
+        self,
+        embedding="https://tfhub.dev/google/nnlm-en-dim128/1",
+        name="ANNForSentimentAnalysis",
+        **kwargs
+    ):
         super(ANNForSentimentAnalysis, self).__init__(name=name, **kwargs)
         ####################################################################################
-        self._embedding_layer = hub.KerasLayer(embedding, trainable=True, dtype=tf.string)
-        self._dense_layer_1   = Dense(64, activation='relu')
-        self._output_layer    = Dense(1, activation='sigmoid')
+        self._embedding_layer = hub.KerasLayer(
+            embedding, trainable=True, dtype=tf.string
+        )
+        self._dense_layer_1 = Dense(64, activation="relu")
+        self._output_layer = Dense(1, activation="sigmoid")
         ####################################################################################
 
     @tf.function
     def call(self, inputs):
         ###################################################
-        embeddings   = self._embedding_layer(inputs)
+        embeddings = self._embedding_layer(inputs)
         intermediate = self._dense_layer_1(embeddings)
-        outputs      = self._output_layer(intermediate)
+        outputs = self._output_layer(intermediate)
         ###################################################
         return outputs
 
@@ -74,21 +81,31 @@ class RNNForSentimentAnalysis(Model):
         All the arguments the `tf.keras.Model` class takes
     """
 
-    def __init__(self, embedding="https://tfhub.dev/google/nnlm-en-dim128/1", embedding_dims=128, name="RNNForSentimentAnalysis", **kwargs):
+    def __init__(
+        self,
+        embedding="https://tfhub.dev/google/nnlm-en-dim128/1",
+        embedding_dims=128,
+        name="RNNForSentimentAnalysis",
+        **kwargs
+    ):
         super(RNNForSentimentAnalysis, self).__init__(name=name, **kwargs)
         ####################################################################################
-        self._embedding_layer = hub.KerasLayer(embedding, trainable=False, dtype=tf.string)
-        self._recurrent_layer = Bidirectional(LSTM(64), input_shape=[None, embedding_dims])
-        self._dense_layer_1   = Dense(64, activation='relu')
-        self._output_layer    = Dense(1, activation='sigmoid')
+        self._embedding_layer = hub.KerasLayer(
+            embedding, trainable=False, dtype=tf.string
+        )
+        self._recurrent_layer = Bidirectional(
+            LSTM(64), input_shape=[None, embedding_dims]
+        )
+        self._dense_layer_1 = Dense(64, activation="relu")
+        self._output_layer = Dense(1, activation="sigmoid")
         ####################################################################################
 
     @tf.function
     def call(self, inputs):
         ###################################################
-        embeddings   = self._embedding_layer(inputs)
-        recurrent    = self._recurrent_layer(embeddings)
+        embeddings = self._embedding_layer(inputs)
+        recurrent = self._recurrent_layer(embeddings)
         intermediate = self._dense_layer_1(recurrent)
-        outputs      = self._output_layer(intermediate)
+        outputs = self._output_layer(intermediate)
         ###################################################
         return outputs
