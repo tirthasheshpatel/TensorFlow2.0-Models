@@ -99,6 +99,7 @@ canvas.create_window(300, 260, window=button1)
 browse_button = Button(root, text ='Open File', command = lambda:open_file()) 
 canvas.create_window(300, 210, window=browse_button) 
 
+#footer
 label2 = tk.Label(root, text='by Tirth Patel (18bce243) , Tirth Hihoriya (18bce244)')
 label2.config(font=('helvetica', 14))
 canvas.create_window(300, 390, window=label2)
