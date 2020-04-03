@@ -19,10 +19,18 @@ def load_weights_and_model():
     model.load_weights(CHECKPOINT_DIR)
     return model, encoder
 
+def data_cleaning(text):
+    """Convert review in lower case and remove extra-characters/punctuations"""
+    lower_case = text.lower()
+    clean_text = lower_case.translate(str.maketrans("", "", string.punctuation)).strip()
+    return clean_text
+    
+
 
 def predict(review):
     gloabal model, encoder
     # TODO: clean sentiment @TirthHihoriya. Save the string in review variable
+    review = data_cleaning(review)
 
     review = tf.convert_to_tensor([encoder.encode(review)])
     sentiment = tf.squeeze(model(review))
