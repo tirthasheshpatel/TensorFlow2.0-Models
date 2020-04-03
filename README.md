@@ -2,16 +2,36 @@
 
 Semester 4 Project: Creating and Exporting TensorFlow2.0 Models for Sentiment Analysis
 
-## Models Created
+## Sentiment Analysis Model
 
-1. ANN for Sentiment Analysis: This is an example from documentation but I have also added eager execution model that can be trained with ``tf.GradientTape()`` and ``tf.function``.
+We have created a bidirectional LSTM model for sentiment analysis on IMDB dataset of 8000 words. This achieves an accuracy of about 95\% on training set and 86\% on test set. The training notebook can be found [here](TensorFlow_2_0_Sentiment_Analysis.ipynb). You can run a GUI based app locally by running ``python gui.py``. This will automatically load all the required models and you are ready to predict the results!!
 
-2. RNN for Sentiment Analysis: This is also an example from documentation with eager executions models.
+### Usage
 
-3. CNN for Sentiment Analysis: This is very much a WIP.
 
-Please refer to the project documentation [here](docs/) for more information of the created models.
+#### Linux
 
-### Ready to Export Models
+```shell
+git clone https://github.com/tirthasheshpatel/TensorFlow2.0-Models.git
+cd TensorFlow2.0-Models
+python3 -m venv env
+pip install --upgrade pip
+pip install -r requirements.txt
+python gui.py
+```
 
-``WIP``
+#### Windows
+
+```bash
+git clone https://github.com/tirthasheshpatel/TensorFlow2.0-Models.git
+cd TensorFlow2.0-Models
+python -m venv env
+pip install --upgrade pip
+pip install -r requirements.txt
+python gui.py
+```
+
+### GUI
+
+![gui image](images/gui_1.png)
+![gui image](images/gui_2.png)
