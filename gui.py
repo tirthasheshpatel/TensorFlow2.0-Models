@@ -64,10 +64,10 @@ def open_file():
         entry.insert(0,review)
         
         display_prediction = tk.Label(root, text='Result is: ', font=('helvetica', 14))
-        canvas.create_window(300, 270, window=display_prediction)
+        canvas.create_window(300, 290, window=display_prediction)
 
         prediction = tk.Label(root, text=predict(review),font=('helvetica', 14, 'bold'))
-        canvas.create_window(300, 300, window=prediction) 
+        canvas.create_window(300, 320, window=prediction) 
 
         return None
 
