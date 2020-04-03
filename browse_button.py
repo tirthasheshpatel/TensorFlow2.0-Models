@@ -5,7 +5,7 @@ from tkinter.ttk import *
 
 # importing askopenfile function 
 # from class filedialog 
-from tkinter.filedialog import askopenfile 
+from tkinter.filedialog import askopenfile
 
 root = Tk() 
 root.geometry('200x100') 

@@ -3,6 +3,7 @@ import string
 import pickle
 import tkinter as tk
 import tensorflow as tf
+from tkinter.filedialog import askopenfile
 
 CHECKPOINT_PATH = "training_1/cp.ckpt"
 CHECKPOINT_DIR = os.path.dirname(CHECKPOINT_PATH)
@@ -20,23 +21,26 @@ def load_weights_and_model():
     model.load_weights(CHECKPOINT_PATH)
     return model, encoder
 
+
 def data_cleaning(text):
     """Convert review in lower case and remove extra-characters/punctuations"""
     lower_case = text.lower()
     clean_text = lower_case.translate(str.maketrans("", "", string.punctuation)).strip()
     return clean_text
-    
 
 
 def predict(review):
     global model, encoder
-    # TODO: clean sentiment @TirthHihoriya. Save the string in review variable
+    if not review:
+        return "Please enter something..."
+
     review = data_cleaning(review)
+    print(review)
 
     review = tf.convert_to_tensor([encoder.encode(review)])
     sentiment = tf.squeeze(model(review))
 
-    if tf.math.abs(sentiment) < 1e-3:
+    if tf.math.abs(sentiment) < 1e-2:
         return "NEUTRAL"
     if sentiment > 0.:
         return "POSITIVE"
@@ -44,30 +48,30 @@ def predict(review):
 
 
 def sentiment():
-    global review, canvas
+    global canvas
     review = entry.get()
 
     display_prediction = tk.Label(root, text='Result is: ', font=('helvetica', 14))
     canvas.create_window(300, 290, window=display_prediction)
 
-    prediction = tk.Label(root,text=predict(review),font=('helvetica', 14, 'bold'))
+    prediction = tk.Label(root,text=predict(review), font=('helvetica', 14, 'bold'))
     canvas.create_window(300, 320, window=prediction)
 
     return None
 
 
-def open_file(): 
+def open_file():
+    global canvas
     file = askopenfile(mode ='r', filetypes =[('Text file', '*.txt')]) 
-    if file is not None: 
-        global review, canvas
-        review = file.read() 
-        entry.insert(0,review)
-        
+    if file is not None:
+        review = file.read()
+        entry.insert(0, review)
+
         display_prediction = tk.Label(root, text='Result is: ', font=('helvetica', 14))
         canvas.create_window(300, 290, window=display_prediction)
 
-        prediction = tk.Label(root, text=predict(review),font=('helvetica', 14, 'bold'))
-        canvas.create_window(300, 320, window=prediction) 
+        prediction = tk.Label(root, text=predict(review), font=('helvetica', 14, 'bold'))
+        canvas.create_window(300, 320, window=prediction)
 
         return None
 
@@ -96,7 +100,7 @@ button1 = tk.Button(text='Predict Sentiment', command=sentiment, bg='brown', fg=
 canvas.create_window(300, 260, window=button1)
 
 # browse_button : to take input from text file
-browse_button = Button(root, text ='Open File', command = lambda:open_file()) 
+browse_button = tk.Button(root, text ='Open File', command=lambda: open_file()) 
 canvas.create_window(300, 210, window=browse_button) 
 
 #footer
