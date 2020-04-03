@@ -1,6 +1,53 @@
+import os
+import pickle
 import tkinter as tk
+import tensorflow as tf
 
-root= tk.Tk()
+CHECKPOINT_PATH = "training_1/cp.ckpt"
+CHECKPOINT_DIR = os.path.dirname(CHECKPOINT_PATH)
+
+
+def load_weights_and_model():
+    with open("encoder.pickle", "rb") as encoder_file:
+        encoder = pickle.load(encoder_file)
+    model = tf.keras.Sequential([
+        tf.keras.layers.Embedding(encoder.vocab_size, 64),
+        tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(64)),
+        tf.keras.layers.Dense(64, activation='relu'),
+        tf.keras.layers.Dense(1)
+    ])
+    model.load_weights(CHECKPOINT_DIR)
+    return model, encoder
+
+
+def predict(review):
+    gloabal model, encoder
+    # TODO: clean sentiment @TirthHihoriya. Save the string in review variable
+
+    review = tf.convert_to_tensor([encoder.encode(review)])
+    sentiment = tf.squeeze(model(review))
+
+    if tf.math.abs(sentiment) < 1e-3:
+        return "NEUTRAL"
+    if sentiment > 0.:
+        return "POSITIVE"
+    return "NEGATIVE"
+
+
+def sentiment():
+    global review, canvas
+    review = entry.get()
+
+    display_prediction = tk.Label(root, text='Result is: ', font=('helvetica', 14))
+    canvas.create_window(300, 270, window=display_prediction)
+
+    prediction = tk.Label(root, text=predict(review),font=('helvetica', 14, 'bold'))
+    canvas.create_window(300, 300, window=prediction)
+
+    return None
+
+
+root = tk.Tk()
 
 canvas = tk.Canvas(root, width = 600, height = 400,  relief = 'raised')
 canvas.pack()
@@ -15,25 +62,16 @@ canvas.create_window(300, 120, window=label2)
 
 
 "-------------Here the review will be entered--------------"
-entry = tk.Entry (root,width=70) 
+model, encoder = load_weights_and_model()
+
+entry = tk.Entry(root,width=70)
 canvas.create_window(300, 180, window=entry)
 
-def sentiment():
-    
-    x1 = entry.get()
-    
-    label3 = tk.Label(root, text= 'Result is is:',font=('helvetica', 14))
-    canvas.create_window(300, 270, window=label3)
-    
-    label4 = tk.Label(root, text= "write function which will return the result of entered review",font=('helvetica', 14, 'bold'))
-    canvas.create_window(300, 300, window=label4)
-    
-button1 = tk.Button(text='Get the RESULT', command=sentiment, bg='brown', fg='white', font=('helvetica', 9, 'bold'))
+button1 = tk.Button(text='Predict Sentiment', command=sentiment, bg='brown', fg='white', font=('helvetica', 9, 'bold'))
 canvas.create_window(300, 230, window=button1)
 
-label2 = tk.Label(root, text='by Tirth Ashesh Patel (18bce243) , Tirth Hihoriya (18bce244)')
+label2 = tk.Label(root, text='by Tirth Patel (18bce243) , Tirth Hihoriya (18bce244)')
 label2.config(font=('helvetica', 14))
 canvas.create_window(300, 390, window=label2)
-
 
 root.mainloop()
