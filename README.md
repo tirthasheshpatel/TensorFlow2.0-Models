@@ -15,6 +15,7 @@ We have created a bidirectional LSTM model for sentiment analysis on IMDB datase
 git clone https://github.com/tirthasheshpatel/TensorFlow2.0-Models.git
 cd TensorFlow2.0-Models
 python3 -m venv env
+source env/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 python gui.py
@@ -26,6 +27,7 @@ python gui.py
 git clone https://github.com/tirthasheshpatel/TensorFlow2.0-Models.git
 cd TensorFlow2.0-Models
 python -m venv env
+.\env\Scripts\activate
 pip install --upgrade pip
 pip install -r requirements.txt
 python gui.py
