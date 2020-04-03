@@ -61,14 +61,14 @@ def open_file():
     if file is not None: 
         global review, canvas
         review = file.read() 
-        
+        entry.insert(0,review)
         
         display_prediction = tk.Label(root, text='Result is: ', font=('helvetica', 14))
         canvas.create_window(300, 270, window=display_prediction)
 
         prediction = tk.Label(root, text=predict(review),font=('helvetica', 14, 'bold'))
         canvas.create_window(300, 300, window=prediction) 
-        
+
         return None
 
 
