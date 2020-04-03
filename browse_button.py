@@ -14,7 +14,7 @@ root.geometry('200x100')
 # file in read mode and only Python files 
 # will be opened 
 def open_file(): 
-    file = askopenfile(mode ='r', filetypes =[('Text', '*.txt')]) 
+    file = askopenfile(mode ='r', filetypes =[('Python Files', '*.docx')]) 
     if file is not None: 
         content = file.read() 
         print(content) 
