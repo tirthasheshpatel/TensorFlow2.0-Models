@@ -1,4 +1,5 @@
 import os
+import string
 import pickle
 import tkinter as tk
 import tensorflow as tf
