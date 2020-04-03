@@ -68,6 +68,7 @@ def open_file():
 
         prediction = tk.Label(root, text=predict(review),font=('helvetica', 14, 'bold'))
         canvas.create_window(300, 300, window=prediction) 
+        return None
 
 
 root = tk.Tk()
