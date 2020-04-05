@@ -33,7 +33,4 @@ pip install -r requirements.txt
 python gui.py
 ```
 
-### GUI
 
-![gui image](images/gui_1.png)
-![gui image](images/gui_2.png)
