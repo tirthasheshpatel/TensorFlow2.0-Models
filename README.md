@@ -8,7 +8,6 @@ We have created a bidirectional LSTM model for sentiment analysis on IMDB datase
 
 ### Usage
 
-
 #### Linux
 
 ```shell
@@ -33,4 +32,13 @@ pip install -r requirements.txt
 python gui.py
 ```
 
+### Frameworks Used
 
+1. Tensorflow
+2. Tensorflow Datasets
+3. Tensorflow Hub
+4. Keras
+
+### GUI
+
+![gui](images/gui_1.png)
