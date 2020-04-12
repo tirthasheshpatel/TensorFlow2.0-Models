@@ -35,9 +35,10 @@ python gui.py
 ### Frameworks Used
 
 1. Tensorflow
-2. Tensorflow Datasets
+2. Tkinter
 3. Tensorflow Hub
 4. Keras
+5. Tensorflow Datasets
 
 ### GUI
 
