@@ -43,3 +43,11 @@ python gui.py
 ### GUI
 
 ![gui](images/gui_1.png)
+
+![gui](images/gui_2.png)
+
+![gui](images/gui_3.png)
+
+![gui](images/gui_4.png)
+
+![gui](images/gui_5.png)
