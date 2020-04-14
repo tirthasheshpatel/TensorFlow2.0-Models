@@ -1,6 +1,7 @@
 tensorflow
 tensorflow_hub
 tfds-nightly
-numpy
 matplotlib
+numpy
+
 
