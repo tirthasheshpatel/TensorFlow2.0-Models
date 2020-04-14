@@ -1,6 +1,6 @@
 # TensorFlow2.0-Models
 
-Semester 4 Project: Creating and Exporting TensorFlow2.0 Models for Sentiment Analysis
+Semester 4 PSC Project: Creating and Exporting TensorFlow2.0 Models for Sentiment Analysis
 
 ## Sentiment Analysis Model
 
