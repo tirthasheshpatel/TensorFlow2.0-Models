@@ -44,7 +44,7 @@ def predict(review):
     review = tf.convert_to_tensor([encoder.encode(review)])
     sentiment = tf.squeeze(model(review))
 
-    if tf.math.abs(sentiment) < 1e-2:
+    if tf.math.abs(sentiment) < 1e-1:
         return "NEUTRAL"
     if sentiment > 0.0:
         return "POSITIVE"
