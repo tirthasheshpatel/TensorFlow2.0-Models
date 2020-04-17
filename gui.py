@@ -4,6 +4,8 @@ import pickle
 import tkinter as tk
 import tensorflow as tf
 from tkinter.filedialog import askopenfile
+import warnings
+warnings.filterwarnings("ignore")
 
 CHECKPOINT_PATH = "training_1/cp.ckpt"
 CHECKPOINT_DIR = os.path.dirname(CHECKPOINT_PATH)
@@ -80,42 +82,43 @@ def open_file():
         return None
 
 
-root = tk.Tk()
+if __name__ == '__main__':
+    root = tk.Tk()
 
-canvas = tk.Canvas(root, width=600, height=400, relief="raised")
-canvas.pack()
+    canvas = tk.Canvas(root, width=600, height=400, relief="raised")
+    canvas.pack()
 
-label1 = tk.Label(root, text="Sentiment Analysis")
-label1.config(font=("helvetica", 18))
-canvas.create_window(300, 35, window=label1)
+    label1 = tk.Label(root, text="Sentiment Analysis")
+    label1.config(font=("helvetica", 18))
+    canvas.create_window(300, 35, window=label1)
 
-label2 = tk.Label(root, text="Enter review :")
-label2.config(font=("helvetica", 14))
-canvas.create_window(300, 120, window=label2)
+    label2 = tk.Label(root, text="Enter review :")
+    label2.config(font=("helvetica", 14))
+    canvas.create_window(300, 120, window=label2)
 
 
-"-------------Here the review will be entered--------------"
-model, encoder = load_weights_and_model()
+    "-------------Here the review will be entered--------------"
+    model, encoder = load_weights_and_model()
 
-entry = tk.Entry(root, width=70)
-canvas.create_window(300, 180, window=entry)
+    entry = tk.Entry(root, width=70)
+    canvas.create_window(300, 180, window=entry)
 
-button1 = tk.Button(
-    text="Predict Sentiment",
-    command=sentiment,
-    bg="brown",
-    fg="white",
-    font=("helvetica", 9, "bold"),
-)
-canvas.create_window(300, 260, window=button1)
+    button1 = tk.Button(
+        text="Predict Sentiment",
+        command=sentiment,
+        bg="brown",
+        fg="white",
+        font=("helvetica", 9, "bold"),
+    )
+    canvas.create_window(300, 260, window=button1)
 
-# browse_button : to take input from text file
-browse_button = tk.Button(root, text="Open File", command=lambda: open_file())
-canvas.create_window(300, 210, window=browse_button)
+    # browse_button : to take input from text file
+    browse_button = tk.Button(root, text="Open File", command=lambda: open_file())
+    canvas.create_window(300, 210, window=browse_button)
 
-# footer
-label2 = tk.Label(root, text="by Tirth Patel (18bce243) , Tirth Hihoriya (18bce244)")
-label2.config(font=("helvetica", 14))
-canvas.create_window(300, 390, window=label2)
+    # footer
+    label2 = tk.Label(root, text="by Tirth Patel (18bce243) , Tirth Hihoriya (18bce244)")
+    label2.config(font=("helvetica", 14))
+    canvas.create_window(300, 390, window=label2)
 
-root.mainloop()
+    root.mainloop()
